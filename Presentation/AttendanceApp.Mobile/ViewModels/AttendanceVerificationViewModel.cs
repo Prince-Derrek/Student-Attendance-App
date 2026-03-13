@@ -63,10 +63,9 @@ namespace AttendanceApp.Mobile.ViewModels
                 }
 
                 // 4. Submit to Backend API
-                Guid mockStudentId = Guid.Parse("11111111-1111-1111-1111-111111111111"); // Mock for now
                 Guid mockSessionId = Guid.Parse("22222222-2222-2222-2222-222222222222"); // Mock for now
 
-                bool isSuccess = await _apiService.SubmitAttendanceAsync(mockStudentId, mockSessionId, location.Latitude, location.Longitude, deviceId);
+                bool isSuccess = await _apiService.SubmitAttendanceAsync(mockSessionId, location.Latitude, location.Longitude, deviceId);
 
                 if (isSuccess)
                 {

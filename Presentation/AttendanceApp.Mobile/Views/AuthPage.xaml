@@ -1,8 +1,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="AttendanceApp.Mobile.Views.AuthPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}"
              NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="*, Auto" Padding="0, 40, 0, 0">
 
@@ -29,7 +36,14 @@
                         <Border Stroke="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate700}}" StrokeThickness="1" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate800}}" StrokeShape="RoundRectangle 12" HeightRequest="56">
                             <Grid ColumnDefinitions="48, *">
                                 <Label Text="badge" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Placeholder="Enter your university ID" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" PlaceholderColor="{StaticResource Slate400}" BackgroundColor="Transparent" VerticalOptions="Center" />
+
+                                <Entry Grid.Column="1" 
+                                       Text="{Binding StudentIdNumber}" 
+                                       Placeholder="Enter your university ID" 
+                                       TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" 
+                                       PlaceholderColor="{StaticResource Slate400}" 
+                                       BackgroundColor="Transparent" 
+                                       VerticalOptions="Center" />
                             </Grid>
                         </Border>
                     </VerticalStackLayout>
@@ -39,7 +53,16 @@
                         <Border Stroke="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate700}}" StrokeThickness="1" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate800}}" StrokeShape="RoundRectangle 12" HeightRequest="56">
                             <Grid ColumnDefinitions="48, *, 48">
                                 <Label Text="lock" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Entry Grid.Column="1" IsPassword="True" Placeholder="Enter password" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" PlaceholderColor="{StaticResource Slate400}" BackgroundColor="Transparent" VerticalOptions="Center" />
+
+                                <Entry Grid.Column="1" 
+                                       Text="{Binding Password}" 
+                                       IsPassword="True" 
+                                       Placeholder="Enter password" 
+                                       TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" 
+                                       PlaceholderColor="{StaticResource Slate400}" 
+                                       BackgroundColor="Transparent" 
+                                       VerticalOptions="Center" />
+
                                 <Label Grid.Column="2" Text="visibility_off" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Grid>
                         </Border>
@@ -47,7 +70,19 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Spacing="16" Margin="0, 24, 0, 0">
-                    <Button Text="Sign In" BackgroundColor="{StaticResource Primary}" TextColor="White" FontAttributes="Bold" HeightRequest="56" CornerRadius="12" />
+
+                    <Label Text="{Binding ErrorMessage}" 
+                           TextColor="Red" 
+                           HorizontalOptions="Center" 
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+
+                    <Button Text="Sign In" 
+                            Command="{Binding SignInCommand}"
+                            BackgroundColor="{StaticResource Primary}" 
+                            TextColor="White" 
+                            FontAttributes="Bold" 
+                            HeightRequest="56" 
+                            CornerRadius="12" />
 
                     <Grid ColumnDefinitions="*, Auto, *" Margin="0, 8">
                         <BoxView Grid.Column="0" HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate700}}" VerticalOptions="Center" />

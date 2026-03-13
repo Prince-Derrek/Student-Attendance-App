@@ -3,9 +3,15 @@
     public class Student
     {
         public Guid Id { get; set; }
-        public string FullName { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string StudentIdNumber { get; set; } = string.Empty;
         public string MatriculationNumber { get; set; } = string.Empty;
-        public string RegisteredDeviceId { get; set; } = string.Empty; // Anti-proxy measure
-        public string? SelfieUrl { get; set; } // For visual verification if needed
+        public string Email { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
+
+        // Anti-proxy measures
+        public string RegisteredDeviceId { get; set; } = string.Empty;
+        public string? SelfieUrl { get; set; }
     }
 }

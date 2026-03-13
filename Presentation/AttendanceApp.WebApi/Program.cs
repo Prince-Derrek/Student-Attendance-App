@@ -5,6 +5,7 @@ using AttendanceApp.Application.Interfaces;
 using AttendanceApp.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using AttendanceApp.Infrastructure.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,9 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -60,5 +64,34 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ==========================================
+// AUTOMATIC MIGRATION & DATABASE SEEDING
+// ==========================================
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        // Grab the DbContext
+        var context = services.GetRequiredService<AppDbContext>();
+
+        // 1. Automatically apply any pending migrations (great for Render deployments)
+        await context.Database.MigrateAsync();
+
+        // 2. Run the Seeder class to populate the mock student and classroom
+        await AttendanceApp.Infrastructure.DataSeeds.ApplicationDbContextSeed.SeedAsync(context);
+
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogInformation("Database migrated and seeded successfully.");
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+    }
+}
+
+app.Run(); // This should be the very last line in the file
 
 app.Run();
