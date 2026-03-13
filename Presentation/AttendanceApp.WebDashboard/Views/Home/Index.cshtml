@@ -1,0 +1,117 @@
+﻿@model AttendanceApp.WebDashboard.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section>
+    <div class="flex items-center justify-between mb-3">
+        <h2 class="text-xl font-bold tracking-tight">Active Session</h2>
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider animate-pulse">
+            <span class="size-1.5 bg-red-600 rounded-full"></span> Live
+        </span>
+    </div>
+    <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-primary/5 overflow-hidden">
+        <div class="p-5 flex flex-col md:flex-row gap-6">
+            <div class="flex-1 space-y-4">
+                <div>
+                    <p class="text-sm text-primary/60 font-medium uppercase tracking-wide">Current Class</p>
+                    <h3 class="text-2xl font-bold text-primary dark:text-slate-100">@Model.ActiveSession.CourseName (@Model.ActiveSession.CourseCode)</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-primary/5 rounded-lg p-3">
+                        <p class="text-xs text-slate-500 mb-1">Time Remaining</p>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">timer</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-slate-200">@Model.ActiveSession.TimeRemaining</span>
+                        </div>
+                    </div>
+                    <div class="bg-primary/5 rounded-lg p-3">
+                        <p class="text-xs text-slate-500 mb-1">Students Present</p>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">group</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-slate-200">@Model.ActiveSession.StudentsPresent / @Model.ActiveSession.TotalEnrolled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/3 flex flex-col justify-end gap-3">
+                <button class="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">analytics</span> Live View
+                </button>
+                <button class="w-full bg-white dark:bg-slate-800 text-primary dark:text-slate-200 border border-primary/20 font-bold py-3 rounded-lg hover:bg-slate-50 transition-colors">
+                    Manage Students
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="flex py-2">
+    <button class="w-full bg-primary text-white flex items-center justify-center gap-3 py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.01] transition-transform active:scale-[0.98]">
+        <span class="material-symbols-outlined">add_circle</span>
+        <span class="text-lg font-bold">Start New Session</span>
+    </button>
+</div>
+
+<section>
+    <div class="flex items-center justify-between mb-3">
+        <h2 class="text-xl font-bold tracking-tight">Ongoing Class Geofence</h2>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+            <span class="size-2 bg-green-500 rounded-full"></span> Verified Location
+        </div>
+    </div>
+    <div class="relative bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-primary/5 overflow-hidden aspect-video md:aspect-[21/9]">
+        <div class="absolute inset-0 bg-slate-200 dark:bg-slate-800" style="background-image: url('https://placeholder.pics/svg/300'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-primary/10 backdrop-blur-[1px]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 border-2 border-primary bg-primary/20 rounded-full flex items-center justify-center">
+                <div class="text-white bg-primary/60 px-3 py-1 rounded-full text-[10px] font-bold uppercase backdrop-blur-md">Active Zone</div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-8 animate-bounce">
+                <span class="material-symbols-outlined text-primary text-3xl fill-1">location_on</span>
+            </div>
+            <div class="absolute top-[45%] left-[48%] size-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
+            <div class="absolute top-[52%] left-[55%] size-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
+            <div class="absolute top-[58%] left-[45%] size-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+            <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-3 rounded-lg border border-primary/10 shadow-lg">
+                <p class="text-xs font-bold text-primary mb-1">@Model.ActiveSession.LocationName</p>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-medium">GPS Accuracy: < 5m</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <button class="size-10 bg-white/90 dark:bg-slate-900/90 rounded-full flex items-center justify-center shadow-lg text-primary"><span class="material-symbols-outlined">my_location</span></button>
+                <button class="size-10 bg-white/90 dark:bg-slate-900/90 rounded-full flex items-center justify-center shadow-lg text-primary"><span class="material-symbols-outlined">zoom_in</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold tracking-tight">My Courses</h2>
+        <button class="text-primary text-sm font-bold flex items-center gap-1">
+            See All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @foreach (var course in Model.Courses)
+        {
+            <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow group">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="size-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-3xl">@course.Icon</span>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-2xl font-black text-primary">@course.AverageAttendancePercentage%</p>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-tight leading-none">Avg. Attendance</p>
+                    </div>
+                </div>
+                <h4 class="text-lg font-bold group-hover:text-primary transition-colors">@course.CourseName</h4>
+                <p class="text-sm text-slate-500 mb-4">@course.Schedule</p>
+                <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-primary h-full rounded-full" style="width: @course.AverageAttendancePercentage%"></div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

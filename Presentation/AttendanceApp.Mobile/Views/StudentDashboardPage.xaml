@@ -1,0 +1,150 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AttendanceApp.Mobile.Views.StudentDashboardPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="*, Auto">
+
+        <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Spacing="0" Padding="0,0,0,24">
+
+                <Grid ColumnDefinitions="Auto, *, Auto" Padding="16" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}">
+                    <Border Stroke="{StaticResource Primary}" StrokeThickness="2" WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" HorizontalOptions="Start">
+                        <Image Source="profile_placeholder.png" Aspect="AspectFill" />
+                    </Border>
+
+                    <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                        <Label Text="The Hub" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Slate100}}" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="Academic Year 2025-26" TextColor="{StaticResource Slate500}" FontSize="12" />
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="2" WidthRequest="40" HeightRequest="40">
+                        <Border BackgroundColor="#0D003366" StrokeThickness="0" StrokeShape="RoundRectangle 8" />
+                        <Label Text="notifications" FontFamily="MaterialIcons" TextColor="{StaticResource Primary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Border BackgroundColor="Red" Stroke="White" StrokeThickness="2" WidthRequest="10" HeightRequest="10" StrokeShape="RoundRectangle 5" HorizontalOptions="End" VerticalOptions="Start" Margin="0,8,8,0" />
+                    </Grid>
+                </Grid>
+
+                <BoxView HeightRequest="1" Color="#1A003366" />
+
+                <VerticalStackLayout Padding="24" Spacing="4">
+                    <Label Text="Welcome back, Derrek" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="Student ID: 12345 • BSc Mathematics &amp; Computer Science" TextColor="{AppThemeBinding Light={StaticResource Slate500}, Dark={StaticResource Slate400}}" FontSize="14" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Padding="24, 0, 24, 24">
+                    <Border Stroke="#0D003366" StrokeThickness="1" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}" StrokeShape="RoundRectangle 12">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="0,4" Radius="10" Opacity="0.1" />
+                        </Border.Shadow>
+
+                        <VerticalStackLayout>
+                            <Grid HeightRequest="128">
+                                <Image Source="class_bg_placeholder.png" Aspect="AspectFill" Opacity="0.8" />
+                                <BoxView Color="{StaticResource Primary}" Opacity="0.1" />
+                                <Border BackgroundColor="{StaticResource Primary}" StrokeThickness="0" StrokeShape="RoundRectangle 12" HorizontalOptions="Start" VerticalOptions="Start" Margin="16" Padding="12,4">
+                                    <Label Text="UPCOMING CLASS" TextColor="White" FontSize="12" FontAttributes="Bold" CharacterSpacing="1" />
+                                </Border>
+                            </Grid>
+
+                            <VerticalStackLayout Padding="20">
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,16">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="Software Architecture" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark=White}" />
+                                        <HorizontalStackLayout Spacing="8" Margin="0,4,0,0">
+                                            <Label Text="schedule" FontFamily="MaterialIcons" TextColor="{StaticResource Slate600}" FontSize="18" VerticalOptions="Center" />
+                                            <Label Text="10:00 AM - 11:30 AM" TextColor="{StaticResource Slate600}" FontSize="14" VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="location_on" FontFamily="MaterialIcons" TextColor="{StaticResource Slate600}" FontSize="18" VerticalOptions="Center" />
+                                            <Label Text="Juja Campus • Science Block 302" TextColor="{StaticResource Slate600}" FontSize="14" VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <Border Grid.Column="1" BackgroundColor="#0D003366" Stroke="#1A003366" StrokeThickness="1" WidthRequest="48" HeightRequest="48" StrokeShape="RoundRectangle 8" VerticalOptions="Start">
+                                        <Label Text="terminal" FontFamily="MaterialIcons" TextColor="{StaticResource Primary}" FontSize="28" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                </Grid>
+
+                                <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Slate100}, Dark={StaticResource Slate800}}" Margin="0,8,0,16" />
+
+                                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                                    <Border BackgroundColor="#E6F4EA" Stroke="#C6E5D0" StrokeThickness="1" StrokeShape="RoundRectangle 20" Padding="16,8">
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="fence" FontFamily="MaterialIcons" TextColor="ForestGreen" FontSize="16" VerticalOptions="Center" />
+                                            <Label Text="CLASSROOM GEOFENCE VERIFIED" TextColor="DarkGreen" FontSize="12" FontAttributes="Bold" CharacterSpacing="0.5" VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                    </Border>
+
+                                    <Button Text="Mark Attendance" BackgroundColor="{StaticResource Primary}" TextColor="White" FontAttributes="Bold" FontSize="18" HeightRequest="56" WidthRequest="280" CornerRadius="12">
+                                        <Button.ImageSource>
+                                            <FontImageSource FontFamily="MaterialIcons" Glyph="how_to_reg" Color="White" Size="24" />
+                                        </Button.ImageSource>
+                                    </Button>
+
+                                    <Label Text="Your location is automatically verified via GPS. Make sure you are within the 20-meter radius of Room 302." TextColor="{StaticResource Slate400}" FontSize="10" HorizontalTextAlignment="Center" Margin="16,0" />
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="16" Padding="24, 0, 24, 24">
+                    <Border Grid.Column="0" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}" Stroke="{AppThemeBinding Light={StaticResource Slate100}, Dark={StaticResource Slate800}}" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="ATTENDANCE RATE" TextColor="{StaticResource Slate500}" FontSize="12" FontAttributes="Bold" />
+                            <HorizontalStackLayout Spacing="4" VerticalOptions="End">
+                                <Label Text="94%" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Slate100}}" FontSize="24" FontAttributes="Bold" />
+                                <Label Text="↑ 2%" TextColor="ForestGreen" FontSize="12" FontAttributes="Bold" VerticalOptions="Center" Margin="0,4,0,0" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}" Stroke="{AppThemeBinding Light={StaticResource Slate100}, Dark={StaticResource Slate800}}" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="CLASSES TODAY" TextColor="{StaticResource Slate500}" FontSize="12" FontAttributes="Bold" />
+                            <HorizontalStackLayout Spacing="4" VerticalOptions="End">
+                                <Label Text="3" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Slate100}}" FontSize="24" FontAttributes="Bold" />
+                                <Label Text="/ 4" TextColor="{StaticResource Slate400}" FontSize="12" FontAttributes="Bold" VerticalOptions="Center" Margin="0,4,0,0" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}" Padding="16,12,16,24" ColumnDefinitions="*,*,*,*,*">
+            <BoxView Grid.ColumnSpan="5" HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate800}}" VerticalOptions="Start" Margin="-16,-12,-16,0" />
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                <Label Text="home" FontFamily="MaterialIcons" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="HOME" TextColor="{StaticResource Primary}" FontSize="10" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                <Label Text="calendar_month" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="SCHEDULE" TextColor="{StaticResource Slate400}" FontSize="10" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <Border Grid.Column="2" BackgroundColor="{StaticResource Primary}" Stroke="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}" StrokeThickness="4" WidthRequest="64" HeightRequest="64" StrokeShape="RoundRectangle 32" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,-32,0,0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,4" Radius="8" Opacity="0.2" />
+                </Border.Shadow>
+                <Label Text="qr_code_scanner" FontFamily="MaterialIcons" TextColor="White" FontSize="32" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                <Label Text="history" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="HISTORY" TextColor="{StaticResource Slate400}" FontSize="10" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                <Label Text="person" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="PROFILE" TextColor="{StaticResource Slate400}" FontSize="10" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>

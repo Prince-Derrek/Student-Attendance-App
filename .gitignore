@@ -1,0 +1,45 @@
+## Ignore Visual Studio temporary files, build results, and user-specific files.
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015/2017/2019/2022 cache/options directory
+.vs/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core / MAUI specific
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+.nupkg
+
+# Mac/iOS specific
+.DS_Store
+*.xcworkspace/
+*.xcuserdata/
+
+# Configuration and secrets
+appsettings.Development.json
+appsettings.Secret.json
+secrets.json
+
+docker-compose.yml

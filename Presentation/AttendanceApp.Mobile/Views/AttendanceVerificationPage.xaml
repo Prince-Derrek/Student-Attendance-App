@@ -1,0 +1,114 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AttendanceApp.Mobile.Views.AttendanceVerificationPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+
+        <Grid Grid.Row="0" Padding="16" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}">
+            <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate800}}" VerticalOptions="End" Margin="-16,0" />
+
+            <Grid ColumnDefinitions="40, *, 40">
+                <Border Grid.Column="0" WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" BackgroundColor="Transparent" StrokeThickness="0">
+                    <Label Text="arrow_back" FontFamily="MaterialIcons" FontSize="24" TextColor="{StaticResource Primary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <Label Grid.Column="1" Text="Class Attendance" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+
+        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="16" Spacing="0">
+
+                <VerticalStackLayout Spacing="16" Margin="0,0,0,24">
+                    <HorizontalStackLayout Spacing="8">
+                        <Border WidthRequest="24" HeightRequest="24" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource Primary}" StrokeThickness="0">
+                            <Label Text="1" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Location Check" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Border StrokeShape="RoundRectangle 12" HeightRequest="320" Stroke="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate800}}" StrokeThickness="2" BackgroundColor="{AppThemeBinding Light={StaticResource Slate100}, Dark={StaticResource Slate800}}">
+                        <Grid>
+                            <Image Source="map_city_placeholder.png" Aspect="AspectFill" />
+
+                            <Ellipse Fill="#33003366" Stroke="{StaticResource Primary}" StrokeThickness="2" WidthRequest="180" HeightRequest="180" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Ellipse Fill="{StaticResource Primary}" Stroke="White" StrokeThickness="2" WidthRequest="16" HeightRequest="16" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Ellipse.Shadow>
+                                    <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.3" />
+                                </Ellipse.Shadow>
+                            </Ellipse>
+
+                            <Border BackgroundColor="{AppThemeBinding Light=#E6FFFFFF, Dark=#E60F172A}" Padding="12,8" Margin="16" StrokeShape="RoundRectangle 8" VerticalOptions="End" Stroke="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate700}}" StrokeThickness="1">
+                                <HorizontalStackLayout Spacing="12">
+                                    <Label Text="check_circle" FontFamily="MaterialIcons" TextColor="ForestGreen" FontSize="20" VerticalOptions="Center" />
+                                    <Label Text="Inside: JKUAT Science Block" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout Spacing="8">
+                        <Border WidthRequest="24" HeightRequest="24" StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource Primary}" StrokeThickness="0">
+                            <Label Text="2" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Selfie Verification" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Slate900}, Dark={StaticResource Slate100}}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Border StrokeShape="RoundRectangle 12" HeightRequest="420" Stroke="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate800}}" StrokeThickness="2" BackgroundColor="Black">
+                        <Grid>
+                            <Image Source="selfie_cam_placeholder.png" Aspect="AspectFill" Opacity="0.8" />
+
+                            <Border Stroke="White" StrokeThickness="4" StrokeDashArray="10,5" WidthRequest="250" HeightRequest="320" StrokeShape="RoundRectangle 125" Opacity="0.5" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent">
+                                <BoxView Color="White" WidthRequest="16" HeightRequest="4" CornerRadius="2" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,-2,0,0" />
+                            </Border>
+
+                            <Button Text="Capture &amp; Verify" BackgroundColor="{StaticResource Primary}" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="48" CornerRadius="24" Margin="0,0,0,16" VerticalOptions="End" HorizontalOptions="Center" WidthRequest="220">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIcons" Glyph="photo_camera" Color="White" Size="20" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Label Text="Position your face within the oval for automatic recognition" TextColor="{StaticResource Slate500}" FontSize="12" HorizontalTextAlignment="Center" Margin="0,0,0,16" />
+                </VerticalStackLayout>
+
+                <Border BackgroundColor="#E6F4EA" Stroke="#C6E5D0" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="16" Margin="0,8,0,24">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="12">
+                        <Border BackgroundColor="ForestGreen" WidthRequest="48" HeightRequest="48" StrokeShape="RoundRectangle 24" StrokeThickness="0" HorizontalOptions="Center">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <Label Text="check" FontFamily="MaterialIcons" TextColor="White" FontSize="32" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Attendance Marked" TextColor="DarkGreen" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" />
+                        <Label Text="Software Architecture (SMA-2104) - 10:00 AM" TextColor="ForestGreen" FontSize="14" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="2" BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Slate900}}" Padding="16,8,16,24" ColumnDefinitions="*,*,*">
+            <BoxView Grid.ColumnSpan="3" HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Slate200}, Dark={StaticResource Slate800}}" VerticalOptions="Start" Margin="-16,-8,-16,0" />
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4" VerticalOptions="Center">
+                <Label Text="home" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="Home" TextColor="{StaticResource Slate400}" FontSize="12" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4" VerticalOptions="Center">
+                <Label Text="calendar_today" FontFamily="MaterialIcons" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="Classes" TextColor="{StaticResource Primary}" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4" VerticalOptions="Center">
+                <Label Text="person" FontFamily="MaterialIcons" TextColor="{StaticResource Slate400}" FontSize="24" HorizontalOptions="Center" />
+                <Label Text="Profile" TextColor="{StaticResource Slate400}" FontSize="12" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>
