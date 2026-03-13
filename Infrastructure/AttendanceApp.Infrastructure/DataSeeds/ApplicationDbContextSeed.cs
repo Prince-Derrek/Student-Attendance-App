@@ -18,7 +18,7 @@ namespace AttendanceApp.Infrastructure.DataSeeds
                     LastName = "Kimani",
                     StudentIdNumber = "20240589",
                     Email = "derrekkinyanjui@proton.me",
-                    PasswordHash = "$2a$11$0z5D3LqQ3J0QOQZzJ8/R.O9QyQZzJ8/R.O9QyQZzJ8/R.O9QyQZzJ"
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123!")
                 };
                 await context.Students.AddAsync(student);
             }
