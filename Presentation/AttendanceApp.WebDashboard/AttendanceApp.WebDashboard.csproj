@@ -17,9 +17,9 @@
     <ProjectReference Include="..\..\Core\AttendanceApp.Application\AttendanceApp.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AttendanceApp.Infrastructure\AttendanceApp.Infrastructure.csproj" />
   </ItemGroup>
-	
-  <Target Name="BuildTailwind" BeforeTargets="Build">
-    <Exec Command="npx tailwindcss -i ./Styles/app.css -o ./wwwroot/css/app.css --minify" />
+
+  <Target Name="BuildTailwind" BeforeTargets="Build" Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' != 'true'">
+	<Exec Command="npx tailwindcss -i ./Styles/app.css -o ./wwwroot/css/app.css --minify" />
   </Target>
 
 </Project>

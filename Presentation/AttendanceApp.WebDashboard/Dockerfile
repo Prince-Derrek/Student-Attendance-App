@@ -10,10 +10,6 @@ EXPOSE 8081
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-RUN apt-get update
-RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Presentation/AttendanceApp.WebDashboard/AttendanceApp.WebDashboard.csproj", "Presentation/AttendanceApp.WebDashboard/"]
