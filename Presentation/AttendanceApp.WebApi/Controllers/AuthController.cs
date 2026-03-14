@@ -1,5 +1,6 @@
 ﻿using AttendanceApp.Application.DTOs;
 using AttendanceApp.Application.Interfaces;
+using AttendanceApp.Domain.Entities;
 using AttendanceApp.Infrastructure; // Assuming DbContext is accessible here
 using AttendanceApp.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,48 @@ namespace AttendanceApp.WebApi.Controllers
                 StudentId = student.Id,
                 Token = token,
                 FirstName = student.FirstName
+            };
+
+            return Ok(response);
+        }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
+        {
+            // 1. Check if the student ID is already taken
+            var existingStudent = await _context.Students
+                .FirstOrDefaultAsync(s => s.StudentIdNumber == request.StudentIdNumber);
+
+            if (existingStudent != null)
+            {
+                return BadRequest(new { Message = "A student with this ID already exists." });
+            }
+
+            // 2. Hash the new password using your BCrypt service
+            string hashedPassword = _passwordHasher.Hash(request.Password);
+
+            // 3. Create the new Student entity
+            var newStudent = new Student
+            {
+                Id = Guid.NewGuid(),
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                StudentIdNumber = request.StudentIdNumber,
+                Email = request.Email,
+                PasswordHash = hashedPassword
+            };
+
+            // 4. Save to Neon Database
+            _context.Students.Add(newStudent);
+            await _context.SaveChangesAsync();
+
+            // 5. Generate a Token so they are immediately authenticated
+            string token = _jwtProvider.Generate(newStudent);
+
+            var response = new AuthResponseDto
+            {
+                StudentId = newStudent.Id,
+                Token = token,
+                FirstName = newStudent.FirstName
             };
 
             return Ok(response);
